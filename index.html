@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#160b18">
+<title>9 Monate mit dir ♡</title>
+<style>
+:root{--pink:#ff8fc8;--hot:#ff5db1;--cream:#fff2fa;--bg:#130b16;--panel:#211323;--muted:#d7bdd0}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#44203e 0,#170d1b 48%,#0d0910 100%);color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(960px,92%);margin:auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;color:#ffd9ee}
+.logo{font-weight:800;letter-spacing:.04em}
+.pill{border:1px solid #754263;border-radius:999px;padding:8px 13px;color:#ffd9ee;font-size:.85rem}
+.hero{padding:64px 0 48px;text-align:center;position:relative}
+.eyebrow{color:var(--pink);text-transform:uppercase;letter-spacing:.2em;font-size:.78rem;font-weight:800}
+h1{font-size:clamp(2.6rem,8vw,5.8rem);line-height:.98;margin:18px 0;color:#ffacd5;text-shadow:0 0 32px #ff5db144}
+.subtitle{font-size:clamp(1rem,2.5vw,1.25rem);max-width:600px;margin:22px auto;color:#f4dce9;line-height:1.7}
+.btn{border:0;background:linear-gradient(135deg,#ffb4da,#ff70bb);color:#321229;font-weight:800;padding:14px 22px;border-radius:15px;box-shadow:0 8px 30px #ff5db133}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:24px 0 44px}
+.card{background:#211323d9;border:1px solid #754263;border-radius:22px;padding:24px;box-shadow:0 12px 35px #0003}
+.emoji{font-size:2rem}
+.card h2,.card h3{margin:10px 0;color:#ffb3d9}
+.card p{color:var(--muted);line-height:1.65}
+.section{padding:22px 0 56px}
+.section-title{text-align:center;font-size:clamp(1.8rem,5vw,3rem);color:#ffacd5;margin:0 0 10px}
+.center{text-align:center}
+.quiz{max-width:700px;margin:25px auto 0}
+.progress{height:7px;background:#48243f;border-radius:99px;overflow:hidden;margin:20px 0}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff70bb,#ffd0e8);transition:width .25s}
+.question{font-size:1.35rem;font-weight:750;line-height:1.4;margin:12px 0 18px}
+.answers{display:grid;gap:10px}
+.answer{background:#2b1930;border:1px solid #754263;color:var(--cream);border-radius:14px;padding:14px 16px;text-align:left}
+.answer:hover{border-color:var(--pink);background:#3a2040}
+.answer:focus-visible,.btn:focus-visible{outline:3px solid white;outline-offset:3px}
+.feedback{min-height:28px;color:#ffc3e1;margin:15px 0}
+.hidden{display:none!important}
+.note{font-size:1.1rem;line-height:1.85;white-space:pre-line}
+footer{text-align:center;color:#ad8da6;padding:22px 0 40px;font-size:.85rem}
+.heart{position:fixed;bottom:-30px;pointer-events:none;animation:floatUp 5s linear forwards;z-index:3}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding:45px 0 30px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo">♡ FÜR DICH</div><div class="pill">9 Monate zusammen</div></nav>
+<header class="hero">
+  <div class="eyebrow">für meinen Lieblingsmenschen</div>
+  <h1>9 Monate<br>mit dir ♡</h1>
+  <p class="subtitle">Neun Monate voller Lachen, Liebe und Erinnerungen. Und ich freue mich auf alles, was noch kommt. 💗</p>
+  <button class="btn" onclick="document.querySelector('#quiz').scrollIntoView({behavior:'smooth'})">Unser Liebesquiz starten ↓</button>
+</header>
+<div class="grid">
+  <article class="card"><div class="emoji">💗</div><h3>Du & ich</h3><p>Mein Lieblingsmensch, mein sicherer Ort und meine liebste Person zum Quatschmachen.</p></article>
+  <article class="card"><div class="emoji">🎮</div><h3>Eine kleine Challenge</h3><p>Mal sehen, wie gut du unsere kleine Liebesgeschichte kennst. Keine Sorge: Du bist schon mein Hauptgewinn. 🏆</p></article>
+  <article class="card"><div class="emoji">💌</div><h3>Eine Nachricht für dich</h3><p>Am Ende wartet eine kleine Nachricht von mir – nur für dich.</p></article>
+</div>
+<section class="section" id="quiz">
+  <h2 class="section-title">Wie gut kennst du uns? 💞</h2>
+  <p class="center" style="color:var(--muted)">Beantworte die Fragen und schalte deine Überraschung frei.</p>
+  <div class="card quiz">
+    <div id="quizArea">
+      <div style="display:flex;justify-content:space-between;color:#d7bdd0"><span id="counter">Frage 1 von 5</span><span id="score">♡ 0 Punkte</span></div>
+      <div class="progress"><span id="bar"></span></div>
+      <div class="question" id="question"></div>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <button class="btn hidden" id="next" onclick="nextQuestion()">Weiter ♡</button>
+    </div>
+    <div id="result" class="hidden center">
+      <div style="font-size:3rem">💘</div><h2 id="resultTitle">Du bist mein Lieblingsmensch!</h2>
+      <p id="resultText" style="line-height:1.7;color:var(--muted)"></p>
+      <button class="btn" onclick="showLetter()">Deine Überraschung öffnen 💌</button>
+    </div>
+    <div id="letter" class="hidden">
+      <h2 class="center">Für meine Frau ❤️</h2>
+      <p class="note" id="letterText">Happy 9 Monate, mein Schatz! ❤️
+
+Ich bin so froh, dich in meinem Leben zu haben. Danke für jedes Lachen, jede Umarmung und all die kleinen Momente, die mit dir besonders werden.
+
+Es muss kein teures Geschenk sein, denn das Wichtigste, was ich dir geben möchte, ist meine Zeit, meine Liebe und dass ich immer wieder du und ich wählen würde.
+
+Ich liebe dich. Auf ganz viele weitere Monate mit dir. 🫶🏻</p>
+      <p class="center" style="color:#ffacd5">Immer wieder du. Immer wieder wir. ♡</p>
+    </div>
+  </div>
+</section>
+<footer>Mit ganz viel Liebe gemacht ♡</footer>
+</div>
+<script>
+/* Passe die Fragen unten an eure echten Insider an! */
+const questions = [
+ {q:"Was ist mein Lieblingsmoment mit dir?", a:["Jeder Moment mit dir","Nur wenn wir essen","Wenn ich alleine zocke"], correct:0, why:"Mit dir werden sogar ganz normale Tage besonders. 💗"},
+ {q:"Was ist das Wichtigste in unserer Beziehung?", a:["Teure Geschenke","Liebe, Vertrauen und zusammen lachen","Wer zuletzt schreibt"], correct:1, why:"Ganz genau – es geht um uns und wie wir füreinander da sind. 🫶🏻"},
+ {q:"Was würde ich am liebsten mit dir machen?", a:["Zeit zusammen verbringen","Steuern machen","Den ganzen Tag putzen"], correct:0, why:"Egal was wir machen, Hauptsache zusammen. ❤️"},
+ {q:"Wie lange sind wir heute zusammen?", a:["3 Wochen","9 Monate","100 Jahre (fast 😂)"], correct:1, why:"NEUN MONATE, BABYYY 😭💘"},
+ {q:"Wenn ich nochmal wählen dürfte, wen würde ich wählen?", a:["Dich, jedes Mal","Eine Pizza (schwierig)","Den WLAN-Router"], correct:0, why:"Richtig. Ich würde mich immer wieder für dich entscheiden. 💍"}
+];
+let index=0, points=0, locked=false;
+const $=id=>document.getElementById(id);
+function render(){
+ locked=false; const q=questions[index];
+ $("counter").textContent=`Frage ${index+1} von ${questions.length}`;
+ $("score").textContent=`♡ ${points} Punkte`;
+ $("bar").style.width=`${index/questions.length*100}%`;
+ $("question").textContent=q.q; $("feedback").textContent=""; $("next").classList.add("hidden");
+ $("answers").innerHTML="";
+ q.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=answer;b.onclick=()=>choose(i);$("answers").appendChild(b)});
+}
+function choose(i){
+ if(locked)return; locked=true; const q=questions[index];
+ [...$("answers").children].forEach((b,n)=>{b.disabled=true;if(n===q.correct){b.style.borderColor="#ff8fc8";b.style.background="#49233f"}});
+ if(i===q.correct){points++;$("feedback").textContent="Richtig! "+q.why}else{$("feedback").textContent="Fast 😚 "+q.why}
+ $("score").textContent=`♡ ${points} Punkte`; $("bar").style.width=`${(index+1)/questions.length*100}%`;
+ $("next").textContent=index===questions.length-1?"Ergebnis ansehen ♡":"Nächste Frage →"; $("next").classList.remove("hidden");
+}
+function nextQuestion(){index++;if(index<questions.length){render()}else{$("quizArea").classList.add("hidden");$("result").classList.remove("hidden");$("resultTitle").textContent=points===questions.length?"PERFEKT, MEINE FRAU 😭💗":"DU BIST TROTZDEM MEIN HAUPTGEWINN 💘";$("resultText").textContent=`Du hast ${points} von ${questions.length} Punkten! Aber egal wie viele Punkte – du bist und bleibst mein Lieblingsmensch. 🫶🏻`}}
+function showLetter(){$("result").classList.add("hidden");$("letter").classList.remove("hidden");for(let i=0;i<18;i++){setTimeout(()=>{const h=document.createElement("div");h.className="heart";h.textContent=["💗","💕","♡","💖"][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+"vw";h.style.fontSize=(18+Math.random()*20)+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),5200)},i*100)}}
+render();
+</script>
+</body>
+</html>
